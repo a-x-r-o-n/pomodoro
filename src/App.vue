@@ -122,7 +122,7 @@ const customLong = ref(longBreakDuration.value / 60);
 
 const showSettings = ref(false);
 
-const bell = new Audio('https://www.soundjay.com/buttons/sounds/beep-07.mp3');
+const bell = new Audio('./assets/audio/button-2.mp3');
 
 const toggleTimer = () => {
   if (isRunning.value) {
