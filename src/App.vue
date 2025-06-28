@@ -4,7 +4,7 @@
     sessionType === 'Focus'
       ? 'bg-gradient-to-tr from-black via-zinc-900 to-red-900 text-white'
       : sessionType === 'Short Break'
-      ? 'bg-gradient-to-tr from-black via-zinc-900 to-emerald-600 text-white'
+      ? 'bg-gradient-to-tr from-black via-zinc-900 to-emerald-900 text-white'
       : 'bg-gradient-to-tr from-black via-zinc-900 to-indigo-900 text-white'
   ]">
     <div class="space-y-10">
@@ -12,7 +12,7 @@
         <h1 class="text-4xl font-bold">Pomodoro <span :class="    sessionType === 'Focus'
       ? 'text-red-500'
       : sessionType === 'Short Break'
-      ? 'text-emerald-600'
+      ? 'text-emerald-500'
       : 'text-indigo-500'">Timer</span></h1>
       </div>
             <!-- Session Switcher -->
@@ -37,7 +37,7 @@
                 cx="50"
                 cy="50"
                 r="45"
-                :stroke="sessionType === 'Focus' ? '#ff4500' : sessionType === 'Short Break' ? '#22c55e' : '#6366f1'"
+                :stroke="sessionType === 'Focus' ? '#ff0000' : sessionType === 'Short Break' ? '#22c55e' : '#6366f1'"
                 stroke-width="10"
                 fill="none"
                 stroke-linecap="round"
@@ -96,7 +96,7 @@
         </div>
         <div class="mt-6 flex justify-end gap-2">
           <button @click="showSettings = false" class="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 rounded">Cancel</button>
-          <button @click="applyCustomDurations" class="px-4 py-2 bg-red-600 hover:bg-red-500 rounded">Apply</button>
+          <button @click="applyCustomDurations" :class="sessionType === 'Focus' ? 'bg-red-600 hover:bg-red-500' : sessionType === 'Short Break' ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-indigo-600 hover:bg-indigo-500'" class="px-4 py-2 rounded">Apply</button>
         </div>
       </div>
     </div>
@@ -122,7 +122,8 @@ const customLong = ref(longBreakDuration.value / 60);
 
 const showSettings = ref(false);
 
-const bell = new Audio('./assets/audio/button-2.mp3');
+import bellSound from './assets/audio/button-2.mp3';
+const bell = new Audio(bellSound);
 
 const toggleTimer = () => {
   if (isRunning.value) {
